@@ -1,16 +1,16 @@
-import { getCurrentDateTime } from './utils.js';
+import { getCurrentDateTimeIntl } from './utils.js';
 
 export const renderWidgetToday = (widget) => {
-  const currentDateTime = getCurrentDateTime();
+  const { dateStr, timeStr, weekdayStr } = getCurrentDateTimeIntl();
 
   widget.insertAdjacentHTML(
     'beforeend',
     `
       <div class="widget__today">
         <div class="widget__date-block">
-          <p class="widget__date">${currentDateTime.currentDayOfMonth} ${currentDateTime.currentMonth} ${currentDateTime.currentYear}</p>
-          <p class="widget__time">${currentDateTime.hours}:${currentDateTime.minutes}</p>
-          <p class="widget__day">${currentDateTime.currentWeekDay}</p>
+          <p class="widget__date">${dateStr}</p>
+          <p class="widget__time">${timeStr}</p>
+          <p class="widget__day">${weekdayStr}</p>
         </div>
 
         <div class="widget__icon">
@@ -20,7 +20,7 @@ export const renderWidgetToday = (widget) => {
         <div class="widget__wheather">
           <div class="widget__city">
             <p>Калининград</p>
-            <button class="widget__change-city" aria-label="Изменить город"></button>
+            <button class="widget__change-city" aria-label="Изменить город" title="Выбрать город"></button>
           </div>
           <p class="widget__temp-big">19.3°C</p>
           <p class="widget__felt">ощущается</p>

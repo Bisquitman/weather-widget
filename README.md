@@ -1,4 +1,4 @@
-# Интенсив - Виджет погоды (20.06.2023 — 23.06.2023)
+# MethED - Интенсив - Виджет погоды (20.06.2023 — 23.06.2023)
 
 ## ЧТО БУДЕМ ДЕЛАТЬ
 
@@ -28,7 +28,10 @@
 
 - и многое другое.
 
-***
+---
 
 ## Полезные ссылки
+
 - [Исходники (верстка)](https://fs09.getcourse.ru/fileservice/file/download/a/251231/sc/424/h/e23d0dab7c92de164a16e281b6eddedd.zip)
+- [Git](https://git-scm.com/)
+- [API openweathermap](https://openweathermap.org/)
