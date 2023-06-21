@@ -1,6 +1,7 @@
 import { getCurrentDateTimeIntl } from './utils.js';
 
-export const renderWidgetToday = (widget) => {
+export const renderWidgetToday = (widget, data) => {
+  console.log('data: ', data);
   const { dateStr, timeStr, weekdayStr } = getCurrentDateTimeIntl();
 
   widget.insertAdjacentHTML(
@@ -14,43 +15,51 @@ export const renderWidgetToday = (widget) => {
         </div>
 
         <div class="widget__icon">
-          <img class="widget__img" src="./icon/01d.svg" alt="Погода">
+          <img class="widget__img" src="./icon/${data.weather[0].icon}.svg" alt="${data.weather[0].description}" title="${data.weather[0].description}">
         </div>
         
         <div class="widget__wheather">
           <div class="widget__city">
-            <p>Калининград</p>
+            <p>${data.name}</p>
             <button class="widget__change-city" aria-label="Изменить город" title="Выбрать город"></button>
           </div>
-          <p class="widget__temp-big">19.3°C</p>
+          <p class="widget__temp-big">${(data.main.temp - 273.15).toFixed(1)}°C</p>
           <p class="widget__felt">ощущается</p>
-          <p class="widget__temp-small">18.8 °C</p>
+          <p class="widget__temp-small">${(data.main.feels_like - 273.15).toFixed(1)}°C</p>
         </div>
       </div>
     `,
   );
 };
 
-export const renderWidgetOther = (widget) => {
+export const renderWidgetOther = (widget, data) => {
+  // Точка росы
+  const a = 17.27; // постоянная
+  const b = 237.7; // постоянная
+  const T = data.main.temp - 273.15 // Температура воздуха
+  const f = (a * T) / (b + T) + Math.log(data.main.humidity / 100);
+  const Tr = (b * f) / (a - f); // Формула для расчёта точки росы
+  //========================================================================================================================================================
+  
   widget.insertAdjacentHTML(
     'beforeend',
     `
       <div class="widget__other">
         <div class="widget__wind">
           <p class="widget__wind-title">Ветер</p>
-          <p class="widget__wind-speed">3.94 м/с</p>
+          <p class="widget__wind-speed">${(data.wind.speed).toFixed(2)} м/с</p>
           <p class="widget__wind-text">&#8599;</p>
         </div>
 
         <div class="widget__humidity">
           <p class="widget__humidity-title">Влажность</p>
-          <p class="widget__humidity-value">27%</p>
-          <p class="widget__humidity-text">Т.Р: -0.2 °C</p>
+          <p class="widget__humidity-value">${(data.main.humidity).toFixed(0)}%</p>
+          <p class="widget__humidity-text">Т.Р: ${Tr.toFixed(1)}°C</p>
         </div>
 
         <div class="widget__pressure">
           <p class="widget__pressure-title">Давление</p>
-          <p class="widget__pressure-value">768.32</p>
+          <p class="widget__pressure-value">${(data.main.pressure * 0.750063755419211).toFixed(2)}</p>
           <p class="widget__pressure-text">мм рт.ст.</p>
         </div>
       </div>
@@ -95,4 +104,9 @@ export const renderWidgetForecast = (widget) => {
       </ul>
     `,
   );
+};
+
+export const showError = (widget, error) => {
+  widget.textContent = error.toString();
+  widget.classList.add('widget_error');
 };
