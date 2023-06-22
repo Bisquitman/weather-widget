@@ -36,9 +36,3 @@
 - [Git](https://git-scm.com/)
 - [API openweathermap](https://openweathermap.org/)
 - [Arrows](https://symbl.cc/ru/unicode/blocks/arrows/)
-- BugFix проблемы с ежедневным прогнозом: 
-  в функции getWeatherForecastData добавить
-  const currentDate = new Date();
-  const dateUTC = new Date(currentDate.getTime() + currentDate.getTimezoneOffset() * 60000);
-  и заменить new Date().getDate() на dateUTC.getDate()
-  тогда всегда будет 5 дней вне зависимости от часового пояса.
