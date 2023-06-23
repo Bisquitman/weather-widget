@@ -26,7 +26,8 @@ export const getCurrentDateTime = (data) => {
     'суббота',
   ];
 
-  const currentDate = new Date((data.dt) * 1000);
+  // const currentDate = new Date((data.dt) * 1000);
+  const currentDate = new Date();
 
   const currentDayOfMonth = currentDate.getDate();
   const currentMonth = months[currentDate.getMonth()];
