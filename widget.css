@@ -144,7 +144,7 @@
   flex: 0 0 20px;
   border: none;
   padding: 0;
-  background: transparent url('../icon/edit.svg') center/contain no-repeat;
+  background: transparent url('./icon/edit.svg') center/contain no-repeat;
 }
 
 .widget__renew {
@@ -157,13 +157,13 @@
 
 .widget__change-renew {
   cursor: pointer;
-  width: 14px;
-  height: 14px;
-  flex: 0 0 14px;
+  width: 16px;
+  height: 16px;
+  flex: 0 0 16px;
   border: none;
   background-color: transparent;
   padding: 0;
-  background: transparent url('../icon/renew.svg') center/contain no-repeat;
+  background: transparent url('./icon/renew.svg') center/contain no-repeat;
 }
 
 .widget__temp-big {
