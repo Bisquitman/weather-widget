@@ -6,7 +6,6 @@ import {
 import { startWidget } from './widgetService.js';
 
 export const renderWidgetToday = (widget, data) => {
-  widget.textContent = '';
   console.log('data: ', data);
   const { dateStr, timeStr, weekdayStr } = getCurrentDateTime(data);
 
@@ -47,7 +46,11 @@ export const renderWidgetToday = (widget, data) => {
   );
 
   const widgetRenewBtn = widget.querySelector('.widget__change-renew');
-  widgetRenewBtn.addEventListener('click', startWidget);
+  widgetRenewBtn.style.display = 'none';
+  widgetRenewBtn.addEventListener('click', async (e) => {
+    e.preventDefault();
+    await startWidget(data.name);
+  });
 };
 
 export const renderWidgetOther = (widget, data) => {
@@ -124,6 +127,6 @@ export const renderWidgetForecast = (widget, data) => {
 };
 
 export const showError = (widget, error) => {
-  widget.textContent = error;
+  widget.textContent = error.toString();
   widget.classList.add('widget_error');
 };

@@ -93,11 +93,12 @@ export const calcDewPoint = (temp, humidity) => {
 };
 
 export const getWeatherForecastData = (data) => {
+  console.log('Forecast data: ', data);
   const forecast = data.list.filter(
     (item) =>
       new Date(item.dt_txt).getHours() === 12 &&
-      new Date(item.dt_txt).getDate() > new Date().getDate() &&
-      new Date(item.dt_txt).getDate() < new Date().getDate() + 5,
+      new Date(item.dt_txt).getDate() > new Date().getDate() 
+    //  && new Date(item.dt_txt).getDate() < new Date().getDate() + 5,
   );
 
   const forecastData = forecast.map((item) => {
