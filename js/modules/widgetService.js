@@ -1,5 +1,7 @@
+import { cityServiceSearch } from './cityServiceSearch.js';
 import { fetchForecast, fetchWeather, getCity } from './APIService.js';
 import {
+  preloader,
   renderWidgetForecast,
   renderWidgetOther,
   renderWidgetToday,
@@ -21,24 +23,30 @@ export const startWidget = async (city, widget) => {
     widget = document.createElement('div');
     widget.className = 'widget';
   }
+  widget.textContent = '';
+  widget.append(preloader());
 
-  const dataWeather = await fetchWeather(city);
-  console.log('dataWeather: ', dataWeather.data);
+  Promise.all([fetchWeather(city), fetchForecast(city)]).then((data) => {
+    widget.textContent = '';
 
-  if (dataWeather.success) {
-    renderWidgetToday(widget, dataWeather.data);
-    renderWidgetOther(widget, dataWeather.data);
-  } else {
-    showError(widget, dataWeather.error);
-  }
+    const dataWeather = data[0];
+    const dataForecast = data[1];
 
-  const dataForecast = await fetchForecast(city);
+    if (dataWeather.success) {
+      renderWidgetToday(widget, dataWeather.data);
+      renderWidgetOther(widget, dataWeather.data);
+    } else {
+      showError(widget, dataWeather.error);
+    }
 
-  if (dataForecast.success) {
-    renderWidgetForecast(widget, dataForecast.data);
-  } else {
-    showError(widget, dataForecast.error);
-  }
+    if (dataForecast.success) {
+      renderWidgetForecast(widget, dataForecast.data);
+    } else {
+      showError(widget, dataForecast.error);
+    }
+
+    cityServiceSearch(widget);
+  });
 
   return widget;
 };

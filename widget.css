@@ -20,10 +20,28 @@
   font-size: 14px;
   text-align: center;
   max-width: 410px;
-  min-height: 300px;
+  min-height: 320px;
   padding: 5px;
   border-radius: 12px;
 }
+
+.widget__preload {
+  position: absolute;
+  background-image: url('./icon/preloader.svg');
+  background-size: contain;
+  width: 64px;
+  height: 64px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  /* animation: rotation 1.5s linear infinite; */
+}
+
+/* @keyframes rotation {
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+} */
 
 .widget * {
   box-sizing: inherit;
@@ -125,7 +143,6 @@
   height: 20px;
   flex: 0 0 20px;
   border: none;
-  background-color: transparent;
   padding: 0;
   background: transparent url('../icon/edit.svg') center/contain no-repeat;
 }
@@ -140,9 +157,9 @@
 
 .widget__change-renew {
   cursor: pointer;
-  width: 20px;
-  height: 20px;
-  flex: 0 0 20px;
+  width: 14px;
+  height: 14px;
+  flex: 0 0 14px;
   border: none;
   background-color: transparent;
   padding: 0;

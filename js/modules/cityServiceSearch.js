@@ -1,7 +1,7 @@
 import { startWidget } from './widgetService.js';
 
 export const cityServiceSearch = (widget) => {
-  const button = document.querySelector('.widget__change-city');
+  const button = widget.querySelector('.widget__change-city');
 
   button.addEventListener('click', (e) => {
     const form = document.createElement('form');
@@ -23,7 +23,12 @@ export const cityServiceSearch = (widget) => {
       widget.textContent = '';
       await startWidget(inputCity.value, widget);
       cityServiceSearch(widget);
-      widget.querySelector('.weather__loading').remove();
+    });
+
+    inputCity.addEventListener('keyup', ({ code }) => {
+      if (code === 'Escape') {
+        form.remove();
+      }
     });
   });
 };

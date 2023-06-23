@@ -46,10 +46,9 @@ export const renderWidgetToday = (widget, data) => {
   );
 
   const widgetRenewBtn = widget.querySelector('.widget__change-renew');
-  widgetRenewBtn.style.display = 'none';
-  widgetRenewBtn.addEventListener('click', async (e) => {
+  widgetRenewBtn.addEventListener('click', (e) => {
     e.preventDefault();
-    await startWidget(data.name);
+    startWidget(data.name, widget);
   });
 };
 
@@ -129,4 +128,17 @@ export const renderWidgetForecast = (widget, data) => {
 export const showError = (widget, error) => {
   widget.textContent = error.toString();
   widget.classList.add('widget_error');
+
+  setTimeout(() => {
+    widget.textContent = '';
+    widget.classList.remove('widget_error');
+    startWidget(null, widget);
+  }, 3000);
+};
+
+export const preloader = () => {
+  const preload = document.createElement('div');
+  preload.classList.add('widget__preload');
+
+  return preload;
 };
