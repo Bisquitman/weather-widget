@@ -139,12 +139,11 @@
 
 .widget__change-city {
   cursor: pointer;
-  width: 20px;
-  height: 20px;
+  min-height: 20px;
   flex: 0 0 20px;
   border: none;
-  padding: 0;
-  background: transparent url('./icon/edit.svg') center/contain no-repeat;
+  padding: 0 22px 0 0;
+  background: transparent url(./icon/edit.svg) right top / 20px 20px no-repeat;
 }
 
 .widget__renew {

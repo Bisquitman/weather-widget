@@ -34,8 +34,9 @@ export const renderWidgetToday = (widget, data) => {
         
         <div class="widget__wheather">
           <div class="widget__city">
-            <p>${data.name}</p>
-            <button class="widget__change-city" aria-label="Изменить город" title="Выбрать город"></button>
+            <button class="widget__change-city" aria-label="Изменить город" title="Выбрать город">
+              <span>${data.name}</span>
+            </button>
           </div>
           <p class="widget__temp-big">${data.main.temp.toFixed(1)}°C</p>
           <p class="widget__felt">ощущается</p>
