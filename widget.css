@@ -134,7 +134,7 @@
   font-size: 14px;
   display: flex;
   gap: 5px;
-  align-items: center;
+  align-items: flex-start;
 }
 
 .widget__change-city {

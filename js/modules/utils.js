@@ -29,13 +29,15 @@ export const getCurrentDateTime = (data) => {
   // const currentDate = new Date((data.dt) * 1000);
   const currentDate = new Date();
 
-  const currentDayOfMonth = currentDate.getDate();
-  const currentMonth = months[currentDate.getMonth()];
-  const currentYear = currentDate.getFullYear();
-  const currentWeekDay = weekDays[currentDate.getDay()];
+  const cityTime = new Date(Date.now() + currentDate.getTimezoneOffset() * 60000 + data.timezone * 1000);
 
-  const hours = leadingZero(currentDate.getHours());
-  const minutes = leadingZero(currentDate.getMinutes());
+  const currentDayOfMonth = cityTime.getDate();
+  const currentMonth = months[cityTime.getMonth()];
+  const currentYear = cityTime.getFullYear();
+  const currentWeekDay = weekDays[cityTime.getDay()];
+
+  const hours = leadingZero(cityTime.getHours());
+  const minutes = leadingZero(cityTime.getMinutes());
 
   const dateStr = `${currentDayOfMonth} ${currentMonth} ${currentYear}`;
   const timeStr = `${hours}:${minutes}`;
