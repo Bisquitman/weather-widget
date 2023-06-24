@@ -271,6 +271,6 @@
 
 @media (max-width: 580px) {
   .widget__forecast {
-    overflow-y: scroll;
+    overflow-x: auto;
   }
 }
